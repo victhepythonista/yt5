@@ -1,0 +1,141 @@
+
+#:include widgets.kv
+
+Manager:
+	id:manager
+	HomeScreen:
+		id:home_screen 
+		name:"home_screen"
+		quality_selector:quality_selector
+
+		links_container:links_container
+		GridLayout:
+			cols:4
+			size_hint:.4,.06
+			pos_hint:{"x":.5 , "y":.94}
+			spacing:3
+			NavButton:
+				text:"Downloads"
+				on_press:
+					app.root.current = "downloads_screen"
+
+			NavButton:
+				text:"Settings"
+			IconButton:	
+				source:ics["exit50"]
+				on_press:
+					app.stop()
+
+
+		NotificationBar:
+			id:notification_bar
+			pos_hint:{"x":0, "y":0}
+			size_hint:1,.09
+
+
+		FloatLayout:
+			size_hint:.9,.6
+			pos_hint:{'x':.05 ,"y":.25}
+			LinksContainer:
+				id:links_container
+
+
+
+		BoxLayout:
+			size_hint:1,.1
+			pos_hint:{"x":0 , "y":.1}
+			orientation:"horizontal"
+			padding:3
+			spacing:10
+			GridLayout:
+				cols:3
+				Label:
+					text:"FILE : "
+					size_hint_x:.3
+
+				BoxLayout:
+					id:mode_container
+					orientation:"horizontal"
+					padding:10
+					canvas:
+						Color:
+							rgba:.3,.5,.2,1
+						Line:
+							width:.3
+							rectangle:mode_container.x,mode_container.y, mode_container.width, mode_container.height
+					
+					IconButton:
+						source:ics["audio50"]
+						id:audio_mode
+						on_press:
+							home_screen.SwitchDownloadMode("audio")
+							
+
+					IconButton:
+						id:video_mode
+						source:ics["video50"]
+
+						on_press:
+							home_screen.SwitchDownloadMode("video")
+						 
+
+			BoxLayout:
+				cols:3
+				 
+				Label:
+					size_hint_x:.3
+					text:"  Quality"
+				BoxLayout:
+					id:quality_selector
+
+			BoxLayout:
+				cols:1
+				id:download_box
+				orientation:"horizontal"
+				size_hint_x:.2
+				canvas:
+					Color:
+						rgba:.3,.5,.2,1
+					Line:
+						width:.3
+						rectangle:download_box.x,download_box.y, download_box.width, download_box.height
+				
+			 
+				IconButton:
+					 	
+					
+					source:ics["download100"]
+				
+
+						
+	DownloadsScreen:
+		id:downloads_screen
+		name:"downloads_screen"
+
+
+		DownloadManager:
+			size_hint:.9,.8
+			pos_hint:{"x":.05, "y":.15}
+			do_default_tab:False
+			spacing:5
+			TabbedPanelItem:
+				text:"All"
+				color:1,1,1,1
+				TasksContainer:
+
+			TabbedPanelItem:
+				text:"Pending"
+				TasksContainer:
+
+			TabbedPanelItem:
+				text:"Completed"
+				TasksContainer:
+		GridLayout:
+			cols:2
+			pos_hint:{"x":.05, "y":.05}
+			size_hint:.3,.1
+			NavButton:
+				text:"back"
+				on_press:
+					app.root.current = "home_screen"
+		 

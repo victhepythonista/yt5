@@ -1,0 +1,185 @@
+#:import ics files.icons
+ 
+
+# map 
+# ics -> icons 
+
+
+
+<Label>:
+	color:.3,.5,.7,1
+<IconButton>:
+
+<NavButton>:
+	color:.3,1,1,1
+	id:btn
+	canvas:
+		Color:
+			rgba:.3,1,1,.5
+		Line:
+
+
+			rectangle:btn.x ,btn.y,btn.width , btn.height
+
+
+<Button>:
+	background_color:.1,.5,.61,1
+	color:.7,.7,.7,1
+<LinkStubCard>:
+	id:card
+	link_title:link_title
+	size_hint:1,.06
+	cols:2
+	canvas:
+		Color:
+			rgba:.5,.6,1,1
+		Line:
+			width:.3
+			rectangle:card.x  ,card.y , card.width  , 0 
+	Label:
+		id:link_title
+		size_hint_x:.8
+		halign:"left"
+		color:1,1,1,1
+		font_size:10
+	IconButton:
+		size_hint_x:.1
+		source:ics["minus32"]
+		on_press:
+			card.deleted = True
+<LinksContainer>:
+	link_stubs_container:link_stubs_container
+	link_input:link_input
+	size_hint:1,1
+	id:links_container
+	pos_hint:{'x':0,"y":0}
+
+	canvas:
+		Color:
+			rgba:.1,.7,.8,1
+		Line:
+			width:.3
+			rectangle: links_container.x,links_container.y, links_container.width,links_container.height
+
+	GridLayout:
+
+		id:input_box
+		cols:2
+		size_hint:1,.2
+		pos_hint:{"x":0, "y":.8}
+		padding:10
+		canvas:
+			Color:
+				rgba:.3,.2,.5,.6
+			Line:
+				width:.8
+				rectangle:input_box.x,input_box.y,input_box.width,0
+		TextInput:
+			hint_text:"Enter link"
+			id:link_input
+			size_hint:.8,1
+			multiline:False
+			text_align:"center"
+		IconButton:
+			text:"+"
+			size_hint:.2,1
+			source:ics["add100"]
+			on_press:
+				links_container.AddLink()
+
+		
+	GridLayout:
+		cols:1
+		size_hint:1,.8
+		pos_hint:{"x":0, "y":0}
+
+		ScrollView:
+			scroll_bar_width:.1
+			GridLayout:
+				cols:1
+				size_hint_y :None
+				id:link_stubs_container
+
+ 
+
+
+ # download manager 
+
+<TabbedPanelItem>:
+	color:1,1,1,1
+	background_color:.3,.5,.5 , 1
+
+<TasksContainer>:
+	id:tc 
+	tasks_box:tasks_box
+	message_box:message_box
+	background_color:.2,.3,.5,1
+	size_hint:1,1
+	canvas:
+		Color:
+			rgba:1,1,1,1
+		Rectangle:
+			size:self.size 
+			pos:self.pos 
+
+	 
+	FloatLayout:
+		size_hint:1,1
+		pos_hint:{"x":0,"y":0}
+		id:message_box
+		canvas:
+			Color:
+				rgba:.3,.2,.4,.5
+			Line:
+				width:1
+				rectangle:message_box.x ,message_box.y,message_box.width , message_box.height
+	ScrollView:
+		GridLayout:
+			id:tasks_box
+
+
+
+<NotificationLabel>:
+	background_color:.3,.4,.6,.4
+	color:1,1,1,1
+<NotificationBar>:
+	id:nt
+	size_hint:1,.1
+	canvas:
+		Color:
+			rgba:.3,.2,.4,.5
+		Line:
+			width:1
+			rectangle: nt.x ,nt.y,nt.width ,  nt.height
+	
+
+
+<AudioQualitySpinner>:
+	id:spn
+	values:"low" , "medium" , "high" ,"highest" # code to load qualities here
+	color:.3,.6,.2,1
+	background_color:0,0,0,0
+	text:self.values[1]
+
+	canvas:
+		Color:
+			rgba:.3,.2,.4,.5
+		Line:
+			width:1
+			rectangle: spn.x ,spn.y,spn.width ,  spn.height
+	
+
+<VideoQualitySpinner>:
+	id:spn
+	values:"low","medium" , "high", "highest"
+	color:.2,.5,.2,1
+	background_color:0,0,0,0
+	text:self.values[1]
+	canvas:
+		Color:
+			rgba:.3,.2,.4,.5
+		Line:
+			width:1
+			rectangle: spn.x , spn.y, spn.width ,  spn.height
+	
+
