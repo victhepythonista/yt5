@@ -178,7 +178,10 @@ def usage():
 	 print(output(col.Fore.RED,'\n\nOne of the following args should be introduced firstly.\n'))
 	 print(output(col.Fore.CYAN,tbl(data1)))
 	 print(output(col.Fore.YELLOW,'\n\nThese args can occupy any position after the above args.\n'))
-	 print(output(col.Fore.GREEN,tbl(data2)))	 					
+	 print(output(col.Fore.GREEN,tbl(data2)))	 
+
+
+	 					
 if __name__=='__main__':
 	parser=argparse.ArgumentParser(prog='yt5')
 	parser.add_argument('-v','--version',action='version',version=f'%(prog)s v{__version__}')
